@@ -17,15 +17,19 @@ clk <= 1; # 5; clk <= 0; # 5;
 end
 // check results
 always @(negedge clk)
-begin
-if (memwrite) begin
-if (dataadr == 84 & writedata == -33022) begin
-$display("Simulation succeeded");
-$stop;
-end else begin
-$display("Simulation failed");
-$stop;
-end
-end
-end
+begin 
+		if (memwrite) 
+		begin 
+			if (dataadr == 84 && writedata == 7) // (dataadr == 84 && writedata == -33022)  memfile2.dat 
+			begin 
+				$display("Simulation succeeded!"); 
+				$stop; 
+			end 
+			else if (dataadr != 80) 
+			begin 
+				$display("Simulation failed!"); 
+				$stop; 
+			end 
+		end 
+	end 
 endmodule
